@@ -6,7 +6,7 @@ const SearchPage = (props) => {
         <div>
             {props.cars.map((car, index) => {
                 return (
-                    <div key={index}>
+                    <div key={index} onClick={() => { props.goToDetailsPage(car) }}>
                         <span>Color: {car.display_color}</span><span> | </span>
                         <span>Year: {car.year}</span><span> | </span>
                         <span>Make: {car.make}</span><span> | </span>
@@ -21,6 +21,7 @@ const SearchPage = (props) => {
 
 SearchPage.propTypes = {
     cars: PropTypes.array.isRequired,
+    goToDetailsPage: PropTypes.func.isRequired
 };
 
 export default SearchPage;

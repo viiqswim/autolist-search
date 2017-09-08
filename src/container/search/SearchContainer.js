@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import SearchPagination from './../../components/search/SearchPagination';
 import SearchResults from './../../components/search/SearchResults';
 import carSearchApi from './../../requests/carSearchApi';
@@ -9,6 +10,7 @@ class SearchContainer extends React.Component {
         super(props);
 
         this.onPageChange = this.onPageChange.bind(this);
+        this.goToDetailsPage = this.goToDetailsPage.bind(this);
 
         const activePage = 1;
         const params = this.props.match.params;
@@ -110,6 +112,12 @@ class SearchContainer extends React.Component {
         );
     }
 
+    goToDetailsPage(car) {
+        this.props.history.push({
+            pathname: `/vehicle/${car.vin}`,
+        });
+    }
+
     render() {
         const filteredCars = this.filterBySearchQuery();
         const cars = this.state.cars;
@@ -121,6 +129,7 @@ class SearchContainer extends React.Component {
                 {cars && cars.length &&
                     <SearchResults
                         cars={filteredCars}
+                        goToDetailsPage={this.goToDetailsPage}
                     />
                 }
                 {cars && !filteredCars.length &&
@@ -134,7 +143,8 @@ class SearchContainer extends React.Component {
 }
 
 SearchContainer.propTypes = {
-    match: PropTypes.object.isRequired
+    match: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
 };
 
-export default SearchContainer;
+export default withRouter(SearchContainer);
