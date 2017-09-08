@@ -5,10 +5,10 @@ const searchCars = function (pageNumber) {
 
   return axios.get(url)
     .then(function (response) {
-      return JSON.parse(response.data);
+      return response.data;
     })
     .catch(function (error) {
-      console.log(error);
+      console.error(error);
     });
 };
 
