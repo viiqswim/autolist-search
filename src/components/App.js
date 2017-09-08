@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { Route } from 'react-router';
 import { Switch, NavLink } from 'react-router-dom';
 import HomePage from './HomePage';
+import SearchPage from './SearchPage';
+import VehiclePage from './VehiclePage';
 import NotFoundPage from './NotFoundPage';
 
 // This is a class-based component because the current
@@ -20,8 +22,8 @@ class App extends React.Component {
         </div>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          {/* <Route path="/fuel-savings" component={FuelSavingsPage} />
-          <Route path="/about" component={AboutPage} /> */}
+          <Route path="/search/:query" component={SearchPage} />
+          <Route path="/vehicle/:vehicle" component={VehiclePage} />
           <Route component={NotFoundPage} />
         </Switch>
       </div>
