@@ -5,10 +5,6 @@ import PropTypes from 'prop-types';
 const SearchPage = (props) => {
     return (
         <Pagination
-            prevPageText="prev"
-            nextPageText="next"
-            firstPageText="first"
-            lastPageText="last"
             activePage={props.activePage}
             itemsCountPerPage={props.carsPerPage}
             totalItemsCount={props.totalCars}
