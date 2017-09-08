@@ -6,7 +6,7 @@ const SearchPage = (props) => {
         <div>
             {props.cars.map((car, index) => {
                 return (
-                    <div key={index} onClick={() => { props.goToDetailsPage(car) }}>
+                    <div key={index} onClick={() => { props.goToDetailsPage(car); }}>
                         <span>Color: {car.display_color}</span><span> | </span>
                         <span>Year: {car.year}</span><span> | </span>
                         <span>Make: {car.make}</span><span> | </span>
