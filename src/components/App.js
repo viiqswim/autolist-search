@@ -18,12 +18,14 @@ class App extends React.Component {
     return (
       <div>
         <div>
-          <NavLink exact to="/" activeStyle={activeStyle}>Home</NavLink>
+          <NavLink exact to="/" activeStyle={activeStyle}>Home</NavLink><span> | </span>
+          <NavLink exact to="/search/jeep" activeStyle={activeStyle}>Sample search</NavLink><span> | </span>
+          <NavLink exact to="/vehicle/72805455" activeStyle={activeStyle}>Sample vehicle</NavLink>
         </div>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/search/:query" component={SearchPage} />
-          <Route path="/vehicle/:vehicle" component={VehiclePage} />
+          <Route path="/vehicle/:id" component={VehiclePage} />
           <Route component={NotFoundPage} />
         </Switch>
       </div>
