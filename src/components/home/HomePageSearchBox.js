@@ -13,9 +13,10 @@ const HomePageSearchBox = (props) => {
                         placeholder="Please enter a make, model, or year"
                         type="text"
                         onChange={props.onSearchQueryChange}
+                        onKeyPress={props.handleSearchKeyPress}
                     />
                     <InputGroup.Button>
-                        <Button>Search</Button>
+                        <Button onClick={props.onSearchClick}>Search</Button>
                     </InputGroup.Button>
                 </InputGroup>
             </FormGroup>
@@ -24,7 +25,9 @@ const HomePageSearchBox = (props) => {
 };
 
 HomePageSearchBox.propTypes = {
-    onSearchQueryChange: PropTypes.func.isRequired
+    onSearchQueryChange: PropTypes.func.isRequired,
+    onSearchClick: PropTypes.func.isRequired,
+    handleSearchKeyPress: PropTypes.func.isRequired,
 };
 
 export default HomePageSearchBox;

@@ -6,6 +6,8 @@ class HomeContainer extends React.Component {
         super(props);
 
         this.onSearchQueryChange = this.onSearchQueryChange.bind(this);
+        this.onSearchClick = this.onSearchClick.bind(this);
+        this.handleSearchKeyPress = this.handleSearchKeyPress.bind(this);
 
         this.state = {
             searchQuery: ''
@@ -18,11 +20,29 @@ class HomeContainer extends React.Component {
         this.setState({ searchQuery });
     }
 
-    render() {
+    onSearchClick() {
+        this.goToSearchPage();
+    }
+
+    handleSearchKeyPress(event) {
+        if (event.charCode === 13) {
+            // pressed enter
+            this.goToSearchPage();
+        }
+    }
+
+    goToSearchPage() {
         console.log(this.state.searchQuery);
+    }
+
+    render() {
         return (
             <div>
-                <HomePageSearchBox onSearchQueryChange={this.onSearchQueryChange} />
+                <HomePageSearchBox
+                    onSearchQueryChange={this.onSearchQueryChange}
+                    onSearchClick={this.onSearchClick}
+                    handleSearchKeyPress={this.handleSearchKeyPress}
+                />
             </div>
         );
     }
