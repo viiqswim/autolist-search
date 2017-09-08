@@ -19,8 +19,9 @@ class App extends React.Component {
       <div className="container">
         <div>
           <NavLink exact to="/" activeStyle={activeStyle}>Home</NavLink><span> | </span>
-          <NavLink exact to="/search/jeep" activeStyle={activeStyle}>Sample search</NavLink><span> | </span>
-          <NavLink exact to="/vehicle/72805455" activeStyle={activeStyle}>Sample vehicle</NavLink>
+          <NavLink exact to="/search/jeep" activeStyle={activeStyle}>Sample search ID</NavLink><span> | </span>
+          <NavLink exact to="/vehicle/72805455" activeStyle={activeStyle}>Sample vehicle Jeep ID</NavLink><span> | </span>
+          <NavLink exact to="/vehicle/WBA8E3G5XGNU05591" activeStyle={activeStyle}>Sample vehicle BMW VIN</NavLink>
         </div>
         <Switch>
           <Route exact path="/" component={HomePage} />
