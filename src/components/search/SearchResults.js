@@ -1,9 +1,11 @@
-import React from 'react';
+import React from "react";
 import PropTypes from 'prop-types';
+import SearchPagination from './SearchPagination';
 
 const SearchPage = (props) => {
     return (
-        <div>
+        <div className="container text-center">
+            <SearchPagination {...props} />
             {props.cars.map((car, index) => {
                 return (
                     <div key={index}>
@@ -15,12 +17,13 @@ const SearchPage = (props) => {
                     </div>
                 );
             })}
+            <SearchPagination {...props} />
         </div>
     );
 };
 
 SearchPage.propTypes = {
-    cars: PropTypes.array.isRequired
+    cars: PropTypes.array.isRequired,
 };
 
 export default SearchPage;

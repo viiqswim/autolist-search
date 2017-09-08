@@ -7,27 +7,42 @@ class SearchContainer extends React.Component {
     constructor(props) {
         super(props);
 
-        const pageNumber = 1;
+        this.onPageChange = this.onPageChange.bind(this);
+
+        const activePage = 1;
         const params = this.props.match.params;
 
         this.state = {
-            pageNumber,
+            activePage,
             searchQuery: params.query,
+            carsPerPage: 20,
+            totalCars: 400,
             cars: []
         };
     }
 
     componentDidMount() {
-        carSearchApi.searchCars(this.state.pageNumber).then((cars) => {
+        carSearchApi.searchCars(this.state.activePage).then((cars) => {
             this.setState({ cars });
         });
     }
 
+    onPageChange(activePage) {
+        this.setState({ activePage });
+    }
+
     render() {
-        console.log(this.state.searchQuery);
         return (
             <div>
-                {this.state.cars && <SearchResults cars={this.state.cars} />}
+                {this.state.cars &&
+                    <SearchResults
+                        activePage={this.state.activePage}
+                        cars={this.state.cars}
+                        carsPerPage={this.state.carsPerPage}
+                        totalCars={this.state.totalCars}
+                        onPageChange={this.onPageChange}
+                    />
+                }
             </div>
         );
     }
