@@ -31,7 +31,8 @@ const searchCarId = function (id, pageNumber) {
 
 const searchCarPage = function (id, cars) {
   for (let i = 0; i < cars.length; i++) {
-    if (cars[i].id === Number(id)) {
+    const car = cars[i];
+    if (car.id === Number(id) || car.vin === id) {
       return cars[i];
     }
   }
