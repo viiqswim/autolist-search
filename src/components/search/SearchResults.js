@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import SearchPagination from './SearchPagination';
 
 const SearchPage = (props) => {
     return (
-        <div className="container text-center">
-            <SearchPagination {...props} />
+        <div>
             {props.cars.map((car, index) => {
                 return (
                     <div key={index}>
@@ -17,7 +15,6 @@ const SearchPage = (props) => {
                     </div>
                 );
             })}
-            <SearchPagination {...props} />
         </div>
     );
 };

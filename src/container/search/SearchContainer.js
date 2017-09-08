@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import SearchPagination from './../../components/search/SearchPagination';
 import SearchResults from './../../components/search/SearchResults';
 import carSearchApi from './../../requests/carSearchApi';
 
@@ -57,6 +58,28 @@ class SearchContainer extends React.Component {
         });
     }
 
+    filterBySearchQuery() {
+        const searchQuery = this.state.searchQuery;
+        const cars = [...this.state.cars];
+        if (searchQuery === '' || searchQuery === 'all') {
+            return this.state.cars;
+        }
+
+        let filteredCars = [];
+
+        for (let i = 0; i < cars.length; i++) {
+            const car = cars[i];
+
+            if (car.make.toLowerCase() === searchQuery.toLowerCase() ||
+                car.model.toLowerCase() === searchQuery.toLowerCase() ||
+                String(car.year) === searchQuery) {
+                filteredCars.push(car);
+            }
+        }
+
+        return filteredCars;
+    }
+
     searchCarCache(page) {
         let found = false;
         for (let i = 0; i < this.state.searchedPages.length; i++) {
@@ -76,18 +99,35 @@ class SearchContainer extends React.Component {
         this.setState({ activePage });
     }
 
-    render() {
+    renderPaginationComponent() {
         return (
-            <div>
-                {this.state.cars &&
+            <SearchPagination
+                activePage={this.state.activePage}
+                carsPerPage={this.state.carsPerPage}
+                totalCars={this.state.totalCars}
+                onPageChange={this.onPageChange}
+            />
+        );
+    }
+
+    render() {
+        const filteredCars = this.filterBySearchQuery();
+        const cars = this.state.cars;
+
+        return (
+            <div className="container text-center">
+                {this.renderPaginationComponent()}
+                <hr />
+                {cars && filteredCars.length &&
                     <SearchResults
-                        activePage={this.state.activePage}
-                        cars={this.state.cars}
-                        carsPerPage={this.state.carsPerPage}
-                        totalCars={this.state.totalCars}
-                        onPageChange={this.onPageChange}
+                        cars={filteredCars}
                     />
                 }
+                {cars && !filteredCars.length &&
+                    <div> Whoops! No cars matched your search in this page. Maybe in the next page?</div>
+                }
+                <hr />
+                {this.renderPaginationComponent()}
             </div>
         );
     }
