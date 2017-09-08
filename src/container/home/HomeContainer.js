@@ -1,5 +1,5 @@
 import React from 'react';
-import HomePageSearchBox from './../components/HomePageSearchBox';
+import HomePageSearchBox from './../../components/home/HomePageSearchBox';
 
 class HomeContainer extends React.Component {
     constructor(props) {

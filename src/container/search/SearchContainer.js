@@ -1,6 +1,6 @@
 import React from 'react';
-import SearchResults from './../components/SearchResults';
-import carSearchApi from './../requests/carSearchApi';
+import SearchResults from './../../components/search/SearchResults';
+import carSearchApi from './../../requests/carSearchApi';
 
 class SearchContainer extends React.Component {
     constructor(props) {

@@ -3,9 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router';
 import { Switch, NavLink } from 'react-router-dom';
-import HomePage from './HomePage';
-import SearchPage from './SearchPage';
-import VehiclePage from './VehiclePage';
+import HomePage from './home/HomePage';
+import SearchPage from './search/SearchPage';
+import VehiclePage from './vehicle/VehiclePage';
 import NotFoundPage from './NotFoundPage';
 
 // This is a class-based component because the current
