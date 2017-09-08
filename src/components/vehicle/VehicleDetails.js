@@ -11,12 +11,29 @@ const VehicleDetails = (props) => {
     }
 
     return (
-        <div className="container text-center">
-            <span>Color: {car.display_color}</span><span> | </span>
-            <span>Year: {car.year}</span><span> | </span>
-            <span>Make: {car.make}</span><span> | </span>
-            <span>Model: {car.model}</span><span> | </span>
-            <span>Price: {car.price}</span><span> | </span>
+        <div className="container vehicle details">
+            <div className="row">
+                <div className="col-md-4">
+                    <img className="image" src={car.primary_photo_url} alt={car.make} />
+                </div>
+                <div className="col-md-8">
+                    <div>
+                        <h2>{car.year} {car.make} {car.model} </h2>
+                    </div>
+                    <div>
+                        <h3>Condition: {car.condition}</h3>
+                    </div>
+                    <div>
+                        <h3>Price: {car.price_mobile}</h3>
+                    </div>
+                    <div>
+                        <h3>Location: {car.city}, {car.state}</h3>
+                    </div>
+                    <div>
+                        <h3>Sold by: {car.dealer_name}</h3>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const VehicleCard = (props) => {
     const car = props.car;
     return (
-        <div className="container vehicle-card">
+        <div className="container vehicle card">
             <div className="row">
                 <div className="col-md-4">
                     <img className="image" src={car.primary_photo_url} alt={car.make} />
