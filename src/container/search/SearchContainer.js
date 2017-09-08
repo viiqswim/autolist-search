@@ -118,7 +118,7 @@ class SearchContainer extends React.Component {
             <div className="container text-center">
                 {this.renderPaginationComponent()}
                 <hr />
-                {cars && filteredCars.length &&
+                {cars && cars.length &&
                     <SearchResults
                         cars={filteredCars}
                     />
