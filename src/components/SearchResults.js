@@ -1,11 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const SearchPage = () => {
+const SearchPage = (props) => {
     return (
-      <div>
-        Hello Search
-      </div>
+        <div>
+            {props.cars.map((car, index) => {
+                return (
+                    <div key={index}>
+                        <span>Color: {car.display_color}</span><span> | </span>
+                        <span>Year: {car.year}</span><span> | </span>
+                        <span>Make: {car.make}</span><span> | </span>
+                        <span>Model: {car.model}</span><span> | </span>
+                        <span>Price: {car.price}</span><span> | </span>
+                    </div>
+                );
+            })}
+        </div>
     );
+};
+
+SearchPage.propTypes = {
+    cars: PropTypes.array.isRequired
 };
 
 export default SearchPage;

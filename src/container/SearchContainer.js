@@ -3,21 +3,30 @@ import SearchResults from './../components/SearchResults';
 import carSearchApi from './../requests/carSearchApi';
 
 class SearchContainer extends React.Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    const pageNumber = 1;
+        const pageNumber = 1;
 
-    this.state = {
-      cars: carSearchApi.searchCars(pageNumber)
-    };
-  }
+        this.state = {
+            pageNumber,
+            cars: []
+        };
+    }
 
-  render() {
-    return (
-      <SearchResults />
-    );
-  }
+    componentDidMount() {
+        carSearchApi.searchCars(this.state.pageNumber).then((cars) => {
+            this.setState({ cars });
+        });
+    }
+
+    render() {
+        return (
+            <div>
+                {this.state.cars && <SearchResults cars={this.state.cars} />}
+            </div>
+        );
+    }
 }
 
 export default SearchContainer;

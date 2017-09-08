@@ -5,7 +5,7 @@ const searchCars = function (pageNumber) {
 
   return axios.get(url)
     .then(function (response) {
-      return response.data;
+      return response.data.records;
     })
     .catch(function (error) {
       console.error(error);
