@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import HomePageSearchBox from './../../components/home/HomePageSearchBox';
 import { withRouter } from 'react-router';
 
@@ -50,5 +51,9 @@ class HomeContainer extends React.Component {
         );
     }
 }
+
+HomeContainer.propTypes = {
+    history: PropTypes.func.isRequired
+};
 
 export default withRouter(HomeContainer);
