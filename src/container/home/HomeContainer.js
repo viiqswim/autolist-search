@@ -1,5 +1,6 @@
 import React from 'react';
 import HomePageSearchBox from './../../components/home/HomePageSearchBox';
+import { withRouter } from 'react-router';
 
 class HomeContainer extends React.Component {
     constructor(props) {
@@ -32,7 +33,9 @@ class HomeContainer extends React.Component {
     }
 
     goToSearchPage() {
-        console.log(this.state.searchQuery);
+        this.props.history.push({
+            pathname: `/search/${this.state.searchQuery}`,
+        });
     }
 
     render() {
@@ -48,4 +51,4 @@ class HomeContainer extends React.Component {
     }
 }
 
-export default HomeContainer;
+export default withRouter(HomeContainer);
