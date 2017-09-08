@@ -35,7 +35,7 @@ class HomeContainer extends React.Component {
 
     goToSearchPage() {
         this.props.history.push({
-            pathname: `/search/${this.state.searchQuery}`,
+            pathname: `/search/${this.state.searchQuery}/page/1`,
         });
     }
 

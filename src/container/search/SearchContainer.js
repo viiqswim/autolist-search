@@ -12,8 +12,8 @@ class SearchContainer extends React.Component {
         this.onPageChange = this.onPageChange.bind(this);
         this.goToDetailsPage = this.goToDetailsPage.bind(this);
 
-        const activePage = 1;
         const params = this.props.match.params;
+        const activePage = Number(params.activePage) || 1;
 
         this.state = {
             activePage,
