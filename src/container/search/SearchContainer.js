@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
-import ReactLoading from 'react-loading';
+import Loading from './../../components/common/Loading';
 import SearchPagination from './../../components/search/SearchPagination';
 import SearchResults from './../../components/search/SearchResults';
 import carSearchApi from './../../requests/carSearchApi';
@@ -24,7 +24,7 @@ class SearchContainer extends React.Component {
             cars: [],
             allCars: {},
             searchedPages: [],
-            isLoadingData: true,
+            isLoadingData: true
         };
     }
 
@@ -55,6 +55,7 @@ class SearchContainer extends React.Component {
                 isLoadingData: false
             });
         });
+
     }
 
     cacheCars(page, cars) {
@@ -135,12 +136,7 @@ class SearchContainer extends React.Component {
                 {this.renderPaginationComponent()}
                 <hr />
                 {isLoadingData &&
-                    <div>
-                        <div style={{ margin: 'auto', width: '64px' }}>
-                            <ReactLoading type="cylon" color="#444" />
-                        </div>
-                        <h4> Loading. Please wait... </h4>
-                    </div>
+                    <Loading />
                 }
                 {cars && cars.length && !isLoadingData &&
                     <SearchResults
