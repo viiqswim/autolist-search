@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
+import ReactLoading from 'react-loading';
 import SearchPagination from './../../components/search/SearchPagination';
 import SearchResults from './../../components/search/SearchResults';
 import carSearchApi from './../../requests/carSearchApi';
@@ -22,7 +23,8 @@ class SearchContainer extends React.Component {
             totalCars: 400,
             cars: [],
             allCars: {},
-            searchedPages: []
+            searchedPages: [],
+            isLoadingData: true,
         };
     }
 
@@ -44,9 +46,14 @@ class SearchContainer extends React.Component {
             return;
         }
 
+        this.setState({ isLoadingData: true });
+
         carSearchApi.searchCars(page).then((cars) => {
             this.cacheCars(page, cars);
-            this.setState({ cars });
+            this.setState({
+                cars,
+                isLoadingData: false
+            });
         });
     }
 
@@ -121,18 +128,27 @@ class SearchContainer extends React.Component {
     render() {
         const filteredCars = this.filterBySearchQuery();
         const cars = this.state.cars;
+        const isLoadingData = this.state.isLoadingData;
 
         return (
             <div className="container text-center">
                 {this.renderPaginationComponent()}
                 <hr />
-                {cars && cars.length &&
+                {isLoadingData &&
+                    <div>
+                        <div style={{ margin: 'auto', width: '64px' }}>
+                            <ReactLoading type="cylon" color="#444" />
+                        </div>
+                        <h4> Loading. Please wait... </h4>
+                    </div>
+                }
+                {cars && cars.length && !isLoadingData &&
                     <SearchResults
                         cars={filteredCars}
                         goToDetailsPage={this.goToDetailsPage}
                     />
                 }
-                {cars && !filteredCars.length &&
+                {cars && !filteredCars.length && !isLoadingData &&
                     <div> Whoops! No cars matched your search in this page. Maybe in the next page?</div>
                 }
                 <hr />
