@@ -12,8 +12,34 @@ const searchCars = function (pageNumber) {
     });
 };
 
+const searchCarId = function (id, pageNumber) {
+  const url = `https://autolist-test.herokuapp.com/search?page=${pageNumber}`;
+
+  return axios.get(url)
+    .then(function (response) {
+      const cars = response.data.records;
+      const car = searchCarPage(id, cars);
+      if (car) {
+        return car;
+      }
+      searchCarId(id, pageNumber + 1);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+};
+
+const searchCarPage = function (id, cars) {
+  for (let i = 0; i < cars.length; i++) {
+    if (cars[i].id === Number(id)) {
+      return cars[i];
+    }
+  }
+};
+
 const carSearchApi = {
-  searchCars
+  searchCars,
+  searchCarId
 };
 
 export default carSearchApi;

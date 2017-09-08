@@ -1,10 +1,9 @@
 import React from 'react';
+import VehicleContainer from './../../container/vehicle/VehicleContainer';
 
-const VehiclePage = () => {
+const VehiclePage = (props) => {
   return (
-    <div>
-      Hello Vehicle
-    </div>
+    <VehicleContainer {...props} />
   );
 };
 

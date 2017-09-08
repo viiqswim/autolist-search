@@ -11,7 +11,7 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={HomePage}/>
     <Route path="/search/:query" component={SearchPage}/>
-    <Route path="/vehicle/:vehicle" component={VehiclePage}/>
+    <Route path="/vehicle/:vehicleId" component={VehiclePage}/>
     <Route path="*" component={NotFoundPage}/>
   </Route>
 );
