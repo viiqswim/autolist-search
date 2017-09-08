@@ -5,7 +5,7 @@ import path from 'path';
 
 export default {
   resolve: {
-    extensions: ['*', '.js', '.jsx', '.json']
+    extensions: ['*', '.js', '.jsx', '.json', '.webpack.js', '.web.js',]
   },
   devtool: 'eval-source-map', // more info:https://webpack.js.org/guides/development/#using-source-maps and https://webpack.js.org/configuration/devtool/
   entry: [
@@ -51,6 +51,7 @@ export default {
   ],
   module: {
     rules: [
+      { test: /\.json$/, loader: 'json-loader' },
       {test: /\.jsx?$/, exclude: /node_modules/, loaders: ['babel-loader']},
       {test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'file-loader'},
       {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff'},
@@ -60,5 +61,11 @@ export default {
       {test: /\.ico$/, loader: 'file-loader?name=[name].[ext]'},
       {test: /(\.css|\.scss|\.sass)$/, loaders: ['style-loader', 'css-loader?sourceMap', 'postcss-loader', 'sass-loader?sourceMap']}
     ]
+  },
+  node: {
+    console: true,
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
   }
 };
