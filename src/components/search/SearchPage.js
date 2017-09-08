@@ -1,9 +1,9 @@
 import React from 'react';
 import SearchContainer from './../../container/search/SearchContainer';
 
-const SearchPage = () => {
+const SearchPage = (props) => {
   return (
-    <SearchContainer />
+    <SearchContainer {...props}/>
   );
 };
 

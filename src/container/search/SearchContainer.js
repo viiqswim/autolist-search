@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SearchResults from './../../components/search/SearchResults';
 import carSearchApi from './../../requests/carSearchApi';
 
@@ -7,9 +8,11 @@ class SearchContainer extends React.Component {
         super(props);
 
         const pageNumber = 1;
+        const params = this.props.match.params;
 
         this.state = {
             pageNumber,
+            searchQuery: params.query,
             cars: []
         };
     }
@@ -21,6 +24,7 @@ class SearchContainer extends React.Component {
     }
 
     render() {
+        console.log(this.state.searchQuery);
         return (
             <div>
                 {this.state.cars && <SearchResults cars={this.state.cars} />}
@@ -28,5 +32,9 @@ class SearchContainer extends React.Component {
         );
     }
 }
+
+SearchContainer.propTypes = {
+    match: PropTypes.object.isRequired
+};
 
 export default SearchContainer;
