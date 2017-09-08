@@ -1,0 +1,12 @@
+.vehicle-card {
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  .image {
+    width: 75%;
+  }
+}
+
+.vehicle-card:hover {
+  background-color: #f7ecea;
+}

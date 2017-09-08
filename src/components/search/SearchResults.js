@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import VehicleCard from './../vehicle/VehicleCard';
 
 const SearchPage = (props) => {
     return (
@@ -7,11 +8,8 @@ const SearchPage = (props) => {
             {props.cars.map((car, index) => {
                 return (
                     <div key={index} onClick={() => { props.goToDetailsPage(car); }}>
-                        <span>Color: {car.display_color}</span><span> | </span>
-                        <span>Year: {car.year}</span><span> | </span>
-                        <span>Make: {car.make}</span><span> | </span>
-                        <span>Model: {car.model}</span><span> | </span>
-                        <span>Price: {car.price}</span><span> | </span>
+                        <VehicleCard car={car} />
+                        <hr />
                     </div>
                 );
             })}
