@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Loading from './../../components/common/Loading';
 import VehicleDetails from './../../components/vehicle/VehicleDetails';
 import carSearchApi from './../../requests/carSearchApi';
 
@@ -11,7 +12,8 @@ class VehicleContainer extends React.Component {
 
         this.state = {
             vehicleId: params.vehicleId,
-            car: {}
+            car: {},
+            isLoadingData: true
         };
     }
 
@@ -20,17 +22,31 @@ class VehicleContainer extends React.Component {
     }
 
     searchCarId() {
+        this.setState({ isLoadingData: true });
+
         carSearchApi.searchCarId(this.state.vehicleId, 1)
             .then((car) => {
-                this.setState({ car });
+                this.setState({
+                    car,
+                    isLoadingData: false
+                });
             });
     }
 
     render() {
+        const isLoadingData = this.state.isLoadingData;
+
         return (
-            <VehicleDetails
-                car={this.state.car}
-            />
+            <div>
+                {isLoadingData &&
+                    <Loading />
+                }
+                {!isLoadingData &&
+                    <VehicleDetails
+                        car={this.state.car}
+                    />
+                }
+            </div>
         );
     }
 }
