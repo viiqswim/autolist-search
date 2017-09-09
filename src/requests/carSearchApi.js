@@ -19,10 +19,12 @@ const searchCarId = function (id, pageNumber) {
     .then(function (response) {
       const cars = response.data.records;
       const car = searchCarPage(id, cars);
+
       if (car) {
         return car;
       }
-      searchCarId(id, pageNumber + 1);
+
+      return searchCarId(id, pageNumber + 1);
     })
     .catch(function (error) {
       console.error(error);
