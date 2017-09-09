@@ -107,6 +107,9 @@ class SearchContainer extends React.Component {
 
     onPageChange(activePage) {
         this.setState({ activePage });
+        this.props.history.push({
+            pathname: `/search/${this.state.searchQuery}/page/${activePage}`,
+        });
     }
 
     renderPaginationComponent() {
