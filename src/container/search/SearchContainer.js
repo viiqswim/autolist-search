@@ -20,7 +20,7 @@ class SearchContainer extends React.Component {
             activePage,
             searchQuery: params.query,
             carsPerPage: 20,
-            totalCars: 400,
+            totalCars: 4980,
             cars: [],
             allCars: {},
             searchedPages: [],
