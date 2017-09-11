@@ -3,7 +3,7 @@
 This application was bootstrapped using [React Slingshot](https://github.com/coryhouse/react-slingshot)
 
 ## Get Started
-1. **Initial Machine Setup**. First time running the starter kit? Then complete the [Initial Machine Setup](https://github.com/coryhouse/react-slingshot#initial-machine-setup).
+1. **Initial Machine Setup**. First time running the starter kit? Then complete the [Initial Machine Setup](https://github.com/viiqswim/autolist-search#initial-machine-setup).
 2. **Clone the project**. `git clone https://github.com/viiqswim/autolist-search.git`.
 3. **Run the setup script**. `npm run setup`
 4. **Run the app**. `npm start -s`
