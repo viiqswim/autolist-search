@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
+import PriceFilter from './../common/PriceFilter';
 import Loading from './../../components/common/Loading';
 import SearchPagination from './../../components/search/SearchPagination';
 import SearchResults from './../../components/search/SearchResults';
@@ -12,6 +13,8 @@ class SearchContainer extends React.Component {
 
         this.onPageChange = this.onPageChange.bind(this);
         this.goToDetailsPage = this.goToDetailsPage.bind(this);
+        this.handleMinPriceChange = this.handleMinPriceChange.bind(this);
+        this.handleMaxPriceChange = this.handleMaxPriceChange.bind(this);
 
         const params = this.props.match.params;
         const activePage = Number(params.activePage) || 1;
@@ -21,6 +24,8 @@ class SearchContainer extends React.Component {
             searchQuery: params.query,
             carsPerPage: 20,
             totalCars: 4980,
+            minPrice: 0,
+            maxPrice: 1000000,
             cars: [],
             allCars: {},
             searchedPages: [],
@@ -69,23 +74,20 @@ class SearchContainer extends React.Component {
     }
 
     filterBySearchQuery() {
+        const self = this;
         const searchQuery = this.state.searchQuery;
         const cars = [...this.state.cars];
         if (searchQuery === '' || searchQuery === 'all') {
             return this.state.cars;
         }
 
-        let filteredCars = [];
-
-        for (let i = 0; i < cars.length; i++) {
-            const car = cars[i];
-
-            if (car.make.toLowerCase() === searchQuery.toLowerCase() ||
+        const filteredCars = cars.filter(function (car) {
+            return (car.make.toLowerCase() === searchQuery.toLowerCase() ||
                 car.model.toLowerCase() === searchQuery.toLowerCase() ||
-                String(car.year) === searchQuery) {
-                filteredCars.push(car);
-            }
-        }
+                String(car.year) === searchQuery) &&
+                car.price_unformatted > self.state.minPrice &&
+                car.price_unformatted < self.state.maxPrice;
+        });
 
         return filteredCars;
     }
@@ -129,6 +131,14 @@ class SearchContainer extends React.Component {
         });
     }
 
+    handleMinPriceChange(value) {
+        this.setState({ minPrice: Number(value) });
+    }
+
+    handleMaxPriceChange(value) {
+        this.setState({ maxPrice: Number(value) });
+    }
+
     render() {
         const filteredCars = this.filterBySearchQuery();
         const cars = this.state.cars;
@@ -136,6 +146,12 @@ class SearchContainer extends React.Component {
 
         return (
             <div className="container text-center">
+                <PriceFilter
+                    minValue={this.state.minPrice}
+                    maxValue={this.state.maxPrice}
+                    handleMinPriceChange={this.handleMinPriceChange}
+                    handleMaxPriceChange={this.handleMaxPriceChange}
+                />
                 {this.renderPaginationComponent()}
                 <hr />
                 {isLoadingData &&
